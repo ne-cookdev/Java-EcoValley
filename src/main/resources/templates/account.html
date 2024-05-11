@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="/resources/images/logo.ico" type="image/x-icon">
+    <title>Аккаунт</title>
+    <link rel="stylesheet" href="/resources/styles/main.css">
+    <link rel="stylesheet" href="/resources/styles/account.css">
+</head>
+<body>
+    <div th:insert="~{header :: header}"></div>
+    <main class="container">
+        <div class="top">
+            <div><h1 style="margin: 0;">Ваш аккаунт, <span th:text="${user.name}"></span></h1></div>
+            <div><a href="/logout" class="btn">Выход</a></div>
+        </div>
+        <div class="order-history">
+            <h2>История заказов</h2>
+            <ul class="order-list">
+                <li class="order-item" th:each="order, orderIndex : ${user.orders}" th:id="'order-' + ${orderIndex.index}">
+                    <span class="order-number order-header" th:text="'#' + ${order.getOrderNum()}"
+                          th:attr="data-order-index=${orderIndex.index}" th:onclick="toggleOrder(this)"></span>
+                    <ul class="product-list" th:id="'products-' + ${orderIndex.index}" style="display:none;">
+                        <li class="product-item" th:each="product : ${order.products}">
+                            <span th:text="'- ' + ${product.title}"></span>
+                        </li>
+                    </ul>
+                </li>
+                <li class="order-item" th:if="${#lists.isEmpty(user.orders)}">
+                    <p>Заказы отсутствуют</p>
+                </li>
+            </ul>
+        </div>
+        <script th:inline="javascript">
+            function toggleOrder(element) {
+                var orderIndex = element.getAttribute("data-order-index");
+                var productsElement = document.getElementById('products-' + orderIndex);
+                if (productsElement.style.display === "none") {
+                    productsElement.style.display = "block";
+                } else {
+                    productsElement.style.display = "none";
+                }
+            }
+        </script>
+    </main>
+    <div th:insert="~{footer :: footer}"></div>
+</body>
+</html>

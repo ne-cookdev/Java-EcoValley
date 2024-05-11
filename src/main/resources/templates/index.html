@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <link rel="shortcut icon" href="/resources/images/logo.ico" type="image/x-icon">
+    <title>Добро пожаловать</title>
+    <link rel="stylesheet" href="/resources/styles/main.css">
+    <link rel="stylesheet" href="/resources/styles/index.css">
+</head>
+<body>
+    <div th:insert="~{header :: header}"></div>
+    <main class="main">
+        <section class="hero">
+            <h1>Добро пожаловать<br>в магазин EcoMarket</h1>
+            <a href="catalog" class="btn">К покупкам ➡</a>
+        </section>
+    </main>
+    <div th:insert="~{footer :: footer}"></div>
+</body>
+</html>

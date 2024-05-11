@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="/resources/images/logo.ico" type="image/x-icon">
+    <title>Каталог</title>
+    <link rel="stylesheet" href="/resources/styles/main.css">
+    <link rel="stylesheet" href="/resources/styles/catalog.css">
+</head>
+<body>
+    <div th:insert="~{header :: header}"></div>
+    <main>
+      <div class="container">
+          <div class="namespace">
+            <h1>Товары</h1>
+          </div>
+          <div class="products">
+              <div th:each="workshop : ${workshops}" class="product" th:if="${workshop.product.category}">
+                  <img th:src="@{${'/resources/images/' + workshop.product.id + '.webp'}}"
+                       alt="Фото товара" width="150px" height="170px">
+                  <h2 th:text="${workshop.product.title}" class="productName"></h2>
+                  <div>
+                      <div style="display: flex; flex-direction: row">
+                          <p>Цена:&nbsp;</p>
+                          <p th:text="${workshop.product.cost}" class="productCost"></p>
+                          <p>&nbsp;руб.</p>
+                      </div>
+                      <div style="display: flex; flex-direction: row">
+                          <p>Осталось:&nbsp;</p>
+                          <p th:text="${workshop.count}"></p>
+                      </div>
+                  </div>
+                  <button onclick="addToCart(this)">В корзину</button>
+              </div>
+          </div>
+      </div>
+      <div class="cart">
+        <h2>Корзина</h2>
+        <ul id="cart-items">
+        </ul>
+        <div class="create-order">
+          <a onclick="sendRequest()">Оформить</a>
+        </div>
+      </div>
+      <script src="/resources/scripts/market.js"></script>
+    </main>
+    <div th:insert="~{footer :: footer}"></div>
+</body>
+</html>
