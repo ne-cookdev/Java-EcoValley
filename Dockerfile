@@ -4,7 +4,7 @@ WORKDIR /app
 
 COPY . /app
 
-CMD ls
+RUN ls && pwd
 
 EXPOSE 8081
 
