@@ -4,7 +4,7 @@ WORKDIR /app
 
 COPY . /app
 
-RUN ls && pwd
+RUN gradlew build && ls
 
 EXPOSE 8081
 
