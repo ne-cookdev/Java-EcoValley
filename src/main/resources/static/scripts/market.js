@@ -56,11 +56,11 @@ function findCartItemByName(productName) {
 }
 
 function increaseQuantity(cartItemElement) {
-    const quantitySpan = cartItemElement.querySelector('.quantity-controls span');
-    let quantity = parseInt(quantitySpan.textContent);
-    quantity++;
-    quantitySpan.textContent = quantity;
-    saveCartToCookies();
+//    const quantitySpan = cartItemElement.querySelector('.quantity-controls span');
+//    let quantity = parseInt(quantitySpan.textContent);
+//    quantity++;
+//    quantitySpan.textContent = quantity;
+//    saveCartToCookies();
 }
 
 function decreaseQuantity(cartItemElement) {
@@ -89,43 +89,43 @@ function saveCartToCookies() {
     document.cookie = `cartItems=${JSON.stringify(cartItems)}; expires=${new Date(Date.now() + 86400000).toUTCString()}; path=/`;
 }
 
-  function loadCartFromCookies() {
-    const cookies = document.cookie.split(';');
-    for (const cookie of cookies) {
-      const [name, value] = cookie.trim().split('=');
-      if (name === 'cartItems') {
-        const cartItems = JSON.parse(value);
-        const cartItemsElement = document.getElementById('cart-items');
-        cartItems.forEach(item => {
-          const cartItemElement = document.createElement('li');
-          cartItemElement.textContent = item.productName;
-          cartItemElement.classList.add('cart-item');
-          
-          const quantityControls = document.createElement('div');
-          quantityControls.classList.add('quantity-controls');
-          
-          const decreaseButton = document.createElement('button');
-          decreaseButton.textContent = '-';
-          decreaseButton.onclick = function() { decreaseQuantity(cartItemElement); };
-          
-          const quantitySpan = document.createElement('span');
-          quantitySpan.textContent = item.quantity;
-          
-          const increaseButton = document.createElement('button');
-          increaseButton.textContent = '+';
-          increaseButton.onclick = function() { increaseQuantity(cartItemElement); };
-          
-          quantityControls.appendChild(decreaseButton);
-          quantityControls.appendChild(quantitySpan);
-          quantityControls.appendChild(increaseButton);
-          
-          cartItemElement.appendChild(quantityControls);
-          
-          cartItemsElement.appendChild(cartItemElement);
-        });
-      }
-    }
-  }
+//  function loadCartFromCookies() {
+//    const cookies = document.cookie.split(';');
+//    for (const cookie of cookies) {
+//      const [name, value] = cookie.trim().split('=');
+//      if (name === 'cartItems') {
+//        const cartItems = JSON.parse(value);
+//        const cartItemsElement = document.getElementById('cart-items');
+//        cartItems.forEach(item => {
+//          const cartItemElement = document.createElement('li');
+//          cartItemElement.textContent = item.productName;
+//          cartItemElement.classList.add('cart-item');
+//
+//          const quantityControls = document.createElement('div');
+//          quantityControls.classList.add('quantity-controls');
+//
+//          const decreaseButton = document.createElement('button');
+//          decreaseButton.textContent = '-';
+//          decreaseButton.onclick = function() { decreaseQuantity(cartItemElement); };
+//
+//          const quantitySpan = document.createElement('span');
+//          quantitySpan.textContent = item.quantity;
+//
+//          const increaseButton = document.createElement('button');
+//          increaseButton.textContent = '+';
+//          increaseButton.onclick = function() { increaseQuantity(cartItemElement); };
+//
+//          quantityControls.appendChild(decreaseButton);
+//          quantityControls.appendChild(quantitySpan);
+//          quantityControls.appendChild(increaseButton);
+//
+//          cartItemElement.appendChild(quantityControls);
+//
+//          cartItemsElement.appendChild(cartItemElement);
+//        });
+//      }
+//    }
+//  }
 
 function sendRequest() {
     var cookies = document.cookie;
